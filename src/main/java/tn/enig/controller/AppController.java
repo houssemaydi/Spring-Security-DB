@@ -15,37 +15,38 @@ import tn.enig.model.Livre;
 
 @Controller
 public class AppController {
-@Autowired ILivreDao dao;
+	@Autowired
+	ILivreDao dao;
 
+	@GetMapping(value = "/")
+	public String get1(Model model) {
+		List<Livre> liste = dao.findAll();
+		model.addAttribute("liste", liste);
+		return "accueil";
+	}
 
-@GetMapping(value = "/")
-public String get1(Model model) {
- List<Livre> liste=dao.findAll();
- model.addAttribute("liste",liste);
- return "accueil";
- }
+	@GetMapping(value = "/addLivre")
+	public String get33(Model model) {
+		Livre lv = new Livre();
+		model.addAttribute("lv", lv);
+		return "formAddLivre";
+	}
 
-@GetMapping(value="/addLivre")
-public String get33(Model model) {
- Livre lv= new Livre();
- model.addAttribute("lv",lv);
- return "FormAddLivre";
- }
+	@PostMapping(value = "/saveLivre")
+	public String get3(Model model, @ModelAttribute("lv") Livre lv) {
+		dao.save(lv);
+		return "redirect:/";
+	}
 
-@PostMapping(value="/saveLivre")
-public String get3(Model model, @ModelAttribute("lv") Livre lv) {
- dao.save(lv);
- return "redirect:/";
- }
+	@GetMapping(value = "/deleteLivre/{id}")
+	public String get4(Model model, @PathVariable("id") int id) {
+		dao.deleteById(id);
+		return "redirect:/";
+	}
 
-@GetMapping(value="/deleteLivre/{id}")
-public String get4(Model model, @PathVariable("id") int id) {
- dao.deleteById(id);
- return "redirect:/";
- }
-@GetMapping(value="/Page404")
-public String get55(Model model) {
- return "404";
- }
+	@GetMapping(value = "/Page404")
+	public String get55(Model model) {
+		return "404";
+	}
 
 }

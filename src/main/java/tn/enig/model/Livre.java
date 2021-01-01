@@ -12,5 +12,36 @@ public class Livre {
 private Integer id;
 private String Titre;
 private int quantite;
+public Livre() {
+	super();
+	// TODO Auto-generated constructor stub
+}
+public Livre(Integer id, String titre, int quantite) {
+	super();
+	this.id = id;
+	Titre = titre;
+	this.quantite = quantite;
+}
+public Integer getId() {
+	return id;
+}
+public void setId(Integer id) {
+	this.id = id;
+}
+public String getTitre() {
+	return Titre;
+}
+public void setTitre(String titre) {
+	Titre = titre;
+}
+public int getQuantite() {
+	return quantite;
+}
+public void setQuantite(int quantite) {
+	this.quantite = quantite;
+}
+
+
+
 } 
 
